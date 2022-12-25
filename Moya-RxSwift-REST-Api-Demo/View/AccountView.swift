@@ -2,6 +2,7 @@ import SwiftUI
 
 struct AccountView: View {
     @EnvironmentObject var authenticator: Authenticator
+    
     var body: some View {
         Button {
             authenticator.logout()

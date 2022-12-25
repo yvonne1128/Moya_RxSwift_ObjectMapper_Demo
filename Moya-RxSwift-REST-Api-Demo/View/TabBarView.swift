@@ -2,6 +2,7 @@ import SwiftUI
 
 struct TabBarView: View {
     @EnvironmentObject var authenticator: Authenticator
+    
     @State var currentTab: Tab = .Home
     
     init() {
@@ -85,5 +86,4 @@ enum Tab: String, CaseIterable {
     case Search = "magnifyingglass"
     case Notifications = "bell.fill"
     case Account = "person.fill"
-//    case Logout = "door.left.hand.open"
 }

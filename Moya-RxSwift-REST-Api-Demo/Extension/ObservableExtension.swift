@@ -17,9 +17,7 @@ extension ObservableType where Element == Response {
     }
 }
 
-enum RxSwiftMoyaError: String {
+enum RxSwiftMoyaError: String, Error {
     case ParseJSONError
     case OtherError
 }
-
-extension RxSwiftMoyaError: Swift.Error { }

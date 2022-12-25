@@ -15,7 +15,6 @@ let DefaultProvider = ApiProvider(
 )
 
 // MARK: 設定 Request Header
-
 private let endpointClosure = { (target: MultiTarget) -> Endpoint in
     let url = target.baseURL.appendingPathComponent(target.path).absoluteString
     
@@ -37,7 +36,6 @@ private let endpointClosure = { (target: MultiTarget) -> Endpoint in
 }
 
 // MARK: 設定 Request Timeout 時間
-
 private let requestClosure = { (endpoint: Endpoint, closure: @escaping MoyaProvider<MultiTarget>.RequestResultClosure) in
     do {
         var urlRequest = try endpoint.urlRequest()
@@ -52,11 +50,16 @@ private let requestClosure = { (endpoint: Endpoint, closure: @escaping MoyaProvi
     }
 }
 
+// MARK: 實例化 Plugin
 private let apiPlugin = ApiPlugin()
 
 // MARK: Debug Plugin
-
-private let networkLoggerPlugin = NetworkLoggerPlugin(configuration: NetworkLoggerPlugin.Configuration(output: reversedPrint, logOptions: .verbose))
+private let networkLoggerPlugin = NetworkLoggerPlugin(
+    configuration: NetworkLoggerPlugin.Configuration(
+        output: reversedPrint,
+        logOptions: .verbose
+    )
+)
 
 func reversedPrint(target: TargetType, items: [String]) {
     #if DEBUG
@@ -68,8 +71,7 @@ func reversedPrint(target: TargetType, items: [String]) {
 }
 
 class ApiProvider: MoyaProvider<MultiTarget> {
-//    let disposeBag: DisposeBag = DisposeBag()
-    
+
     override init(
         endpointClosure: @escaping MoyaProvider<Target>.EndpointClosure = MoyaProvider.defaultEndpointMapping,
         requestClosure: @escaping MoyaProvider<Target>.RequestClosure = MoyaProvider<Target>.defaultRequestMapping,
